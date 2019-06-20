@@ -2,10 +2,10 @@
 
 ## 前言
 
-#####本博客分享和记录博主前端开发过程中的学习和理解，起于前端，走在全栈路上。
+本博客分享和记录博主前端开发过程中的学习和理解，起于前端，走在全栈路上。
 
 
-欢迎大家访问[博客](skixfox.top)或者[star](https://github.com/LoverFancy)
+欢迎大家访问[博客](skiofox.top)或者[star](https://github.com/LoverFancy)
 
 
 [Stay Hungry and Stay Foolish](http://www.iqiyi.com/w_19rrhpmkw9.html)
