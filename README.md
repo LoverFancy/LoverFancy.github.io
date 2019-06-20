@@ -16,4 +16,4 @@
 
 ## 致谢
 
-这个模板是从这里[IronSummitMedia/startbootstrap-clean-blog-jekyll](https://github.com/IronSummitMedia/startbootstrap-clean-blog-jekyll), 感谢这个作者。
+这个Blog模板来自[IronSummitMedia/startbootstrap-clean-blog-jekyll](https://github.com/IronSummitMedia/startbootstrap-clean-blog-jekyll), 感谢这个作者。
