@@ -10,7 +10,45 @@
 
 [Stay Hungry and Stay Foolish](http://www.iqiyi.com/w_19rrhpmkw9.html)
 
-## 目录
+## 计算机相关
+- 计算机原理与基础
+- 数据结构与算法
+- 设计模式
+- web与网络
+- linux
+- 服务器相关
+    - nginx
+    - apache
+## 大前端
+- HTML && CSS
+- JS
+    - ES5
+    - ES6 && ES7 && ES8 ...
+    - TS
+- 前端框架
+    - jQuery
+    - Backbone
+    - Vue
+    - React
+    - Angular
+- Node
+    - Node原生
+    - Express
+    - Koa
+    - egg
+- 小程序 && 公众号
+- Native
+- 工具类
+## 后端
+- java
+- python
+- php
+- go
+- 数据库相关
+    - mysql
+    - MongoDB
+
+
 
 
 
