@@ -1,4 +1,4 @@
----
+<!-- ---
 layout:     post
 title:      Xcode Debug 大全
 subtitle:   iOS开发中利用 Xcode 各种调试Bug方法
@@ -246,4 +246,4 @@ instruments Xcode自带许多工具供大家使用，打开方式如下图：
 # 结语
 目前所知道的调试方法大概就是上面这几种了，若有什么有趣的方法，请和我分享哈！
 
-
+ -->

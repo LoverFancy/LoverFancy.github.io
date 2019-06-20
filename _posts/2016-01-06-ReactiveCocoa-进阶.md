@@ -1,4 +1,4 @@
----
+<!-- ---
 layout:     post
 title:      ReactiveCocoa 进阶
 subtitle:   函数式编程框架 ReactiveCocoa 进阶
@@ -1515,4 +1515,4 @@ end
 
 ```
 
->最后附上GitHub：<https://github.com/qiubaiying/ReactiveCocoa_Demo>
+>最后附上GitHub：<https://github.com/qiubaiying/ReactiveCocoa_Demo> -->
