@@ -238,6 +238,57 @@ this.$router.push('/user-admin')
 |/user/:username|/user/evan|{ username: 'evan' }|
 |/user/:username/post/:post_id|/user/evan/post/123|{ username: 'evan', post_id: '123' }|
 
+```js
+// app.vue
+
+<temppate>
+  <router-link to="/page1">Go to page1</router-link>
+  <!-- 超链接形式传参 -->
+  <router-link to="/page2/vuejs">Go to page2</router-link>
+
+  <!-- 查询形式传参 k可选-->
+  <router-link to="/page2/1/vuejs?foo=bar">Go to page2</router-link>
+</template>
+
+// page.vue
+  <template>
+    <div>
+      <button @click ="gotoPage()"></button>
+    </div>
+  </template>
+  <script>
+    export default {
+      methods:{
+        gotoPage(){
+          // 获取当前路由路径参数
+          // this.$route.params.msg
+          // 导航方式跳转并传参=>路由超链接传参是必传参
+          // this.$router.push('/page2/vuejs')
+          // 多个参数 name是路由的名字
+          this.$router.push({name:'page2',params:{id:1,msg:'vuejs'}})
+          //获取参数
+          this.$route.params.msg
+          this.$route.params.id
+          // 获取查询参
+          this.$route.query.foo
+
+        }
+      }
+    }
+  </script>
+// router.js
+
+export default new Router({
+  routes: [
+    {path:'/page',components:Page1},
+    // 传参msg
+    // {path:'/page2/:msg',components:Page2}
+    // 多个参数
+    {path:'/page2/:id/:msg',components:Page2,name:'page2'}
+  ]
+})
+```
+
 - this.$route获取当前路由的内容,this.$router获取全局路由的内容
 
 - 获取参数：this.$route.params.username/this.$route.params.post_id
