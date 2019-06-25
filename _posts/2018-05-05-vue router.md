@@ -16,6 +16,8 @@ tags:
 
 ## 
 
-## vue-router 实现权限管理
+## vue-router 实现权限管理的几种方案
+
+## vue-router原理解析
 
 > 本文首次发布于 [SkioFox Blog](http://skiofox.top), 作者 [SkioFox](https://github.com/LoverFancy/) ,转载请保留原文链接.
