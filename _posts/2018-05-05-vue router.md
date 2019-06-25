@@ -250,14 +250,23 @@ this.$router.push('/user-admin')
   <router-link to="/page2/1/vuejs?foo=bar">Go to page2</router-link>
 </template>
 
-// page.vue
+// page2.vue
   <template>
     <div>
       <button @click ="gotoPage()"></button>
+      // 通过参数传递
+      <p>{{$route.params.id}}</p>
+      <p>{{$route.params.msg}}</p>
+      <p>{{$route.params.foo}}</p>
+      // 通过属性传递过来
+      <p>{{id}}</p>
+      <p>{{msg}}</p>
+      <p>{{foo}}</p>
     </div>
   </template>
   <script>
     export default {
+      props:['id','msg','foo']
       methods:{
         gotoPage(){
           // 获取当前路由路径参数
@@ -282,11 +291,34 @@ export default new Router({
   routes: [
     {path:'/page',components:Page1},
     // 传参msg
-    // {path:'/page2/:msg',components:Page2}
+    // {path:'/page2/:msg',components:Page1}
+    // props式传参
+    // {path:'/page2/:msg',components:Page1,props:true}
     // 多个参数
-    {path:'/page2/:id/:msg',components:Page2,name:'page2'}
+    // {path:'/page2/:id/:msg',components:Page2,name:'page2'}
+    
+    // 传递函数 设置了props必需在组件中去接收
+      {path:'/page2/:id/:msg',components:Page2,name:'page2',props:func}
   ]
 })
+
+// function func(route){
+//   return {
+//     // 构建需要传的参数
+//      id: route.params.id,
+//      msg: route.params.msg,
+//      foo: route.query.foo
+//   }
+// }
+
+function func({params,query}){
+  return {
+    // 构建需要传的参数
+     id: params.id,
+     msg: params.msg,
+     foo: query.foo
+  }
+}
 ```
 
 - this.$route获取当前路由的内容,this.$router获取全局路由的内容
