@@ -520,4 +520,80 @@ export default permission
 
 ## vue-router原理解析
 
+```js
+const routes= [
+  {path:'/',component: Home},
+  {path:'/book',component: Book},
+  {path:'/movie',component: Movie}
+]
+
+const router=new VueRouter(Vue,{
+  routes
+})
+
+new vue({
+  el: '#app',
+  router
+})
+
+class VueRouter {
+  constructor(vue,options) {
+    this.$options = options
+    // path和compont的映射关系
+    this.routeMap = {}
+    this.app = new Vue ({
+      // current变量发生变化就可以被识别到
+      data: {
+        // hash模式
+        current: '#/'
+      }
+    })
+    this.init()
+    this.createRouteMap(this.$options)
+    this.initComponent(Vue)
+  }
+  // 初始化hashchange
+  init(){
+    // 加载完对hashchange事件进行绑定，同时更改this指向当前的路由的实例
+    window.addEventListener('load',this.onHashChange.bind(this),false)
+    // 监听hashchange的改变事件
+    window.addEventListener('hashchange',this.onHashChange.bind(this),false)
+  }
+  // 映射组件和path
+  createRouteMap(options) {
+    options.routes.forEach(item=>{
+      this.routeMap[item.path]=item.component
+    })
+  }
+
+  // 注册组件
+
+  initCompent(Vue) {
+    Vue.component('router-link',{
+      props: {
+        to: String
+      },
+      template: '<a :href="to"><slot></slot></a>'
+    })
+
+    const _this=this
+    Vue.component('router-view',{
+      // 渲染组件为虚拟dom,和真实dom映射。，当有变化才会更改
+      render(h) {
+        var component = _this.routeMap[_this.app.current]
+        return h(component)
+      }
+    })
+  }
+  // 获取当前的hash
+  getHash() {
+    return window.location.hash.slice || '/'
+  }
+  // 设置当前路径
+  onHashChange() {
+    this.app.current = this.getHash()
+  }
+}
+```
+
 > 本文首次发布于 [SkioFox Blog](http://skiofox.top), 作者 [SkioFox](https://github.com/LoverFancy/) ,转载请保留原文链接.
