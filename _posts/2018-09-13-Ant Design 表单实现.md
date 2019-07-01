@@ -295,5 +295,6 @@ class KFormSample extends Component {
 export default KFormSample;
 
 ```
+>利用高阶组件和属性传递不断对组件进行封装和扩展功能，利用状态提升在父级进行数据和状态管理
 
 > 本文首次发布于 [SkioFox Blog](http://skiofox.top), 作者 [SkioFox](https://github.com/LoverFancy/) ,转载请保留原文链接.
