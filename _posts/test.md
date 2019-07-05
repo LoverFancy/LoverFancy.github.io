@@ -489,3 +489,6 @@ vm.conflicting() // => "from self"
 比如父子组件都绑定了click事件，但是不希望自己子元素的click事件冒泡到父元素执行，就需要阻止click的冒泡： @click.stop
 28. 处理增删操作的各种边界问题，会影响组件的显示或者数据的变化
 29. vue的动画使用原理和改善
+30. 如何在移动端调试(微信的vconsole重写了console)和抓包(charles主要用于mac,windows用fiddler)
+31. 如何在手机上连接电脑本地的项目进行调试，设置手机的代理指向电脑的ip和端口
+32. 跨域解决方案
