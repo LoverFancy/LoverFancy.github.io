@@ -492,3 +492,23 @@ vm.conflicting() // => "from self"
 30. 如何在移动端调试(微信的vconsole重写了console)和抓包(charles主要用于mac,windows用fiddler)
 31. 如何在手机上连接电脑本地的项目进行调试，设置手机的代理指向电脑的ip和端口
 32. 跨域解决方案
+33. vue新旧版的插槽，具名插槽，作用域插槽
+34. PM2作为node服务器的管理工具 pm2 start pm2.yml
+35. 七牛云空间加快静态资源CDN
+36. vue ssr node ssr mongodb实现公众号和小程序(很全面)
+37. Vue全家桶+SSR+Koa2全栈开发美团网：vue全家桶+koa2+Nuxt(SSR框架)+POI(摒弃Mock数据，最大程度使
+用真实数据)+Element-UI+Redis(据缓存工具)+MongoDB+Mongose(对象模型工具)
+任务：小程序（mvpue,taro）/ vue / react / node (koa/express/egg) 数据结构与算法
+开发顺序：
+  1. 全网首发mpvue课程小程序全栈开发
+  2. 06 9小时搞定微信小程序开发（完结）
+  3. Webpack-四大维度解锁 Webpack 3(1).0 前端工程化
+  4. Vue.js 2.5 + cube-ui 重构饿了么 App
+  5. Vue-开发微信全家桶项目Vue-Node-MongoDB高级技术栈全覆盖(可选)/ 美团项目（可选）
+  6. node项目上线部署
+  7. 01.React全家桶+AntD 共享单车后台管理系统开发
+  8. 03.APP开发之实战美团外卖
+  9. 05.React16+React-Router4 从零打造企业级电商后台管理系统（全）(可选)
+  10. 06.React高级实战 打造大众点评 WebApp（移动端）
+  11. 09.React.js入门与实战[开发适配PC端及移动端新闻头条平台]
+  12. 14.React Native快速开发 厕所在哪App LBS定位 框架封装(可选)
