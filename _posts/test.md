@@ -500,15 +500,267 @@ vm.conflicting() // => "from self"
 用真实数据)+Element-UI+Redis(据缓存工具)+MongoDB+Mongose(对象模型工具)
 任务：小程序（mvpue,taro）/ vue / react / node (koa/express/egg) 数据结构与算法
 开发顺序：
+38. 移动端1px边框实现（由于手机端的dpr原因会导致1px显示成2px，3px等等）=>通过伪类的方式实现=>如下是下边框实现
+```css
+/* mixin.styl */
+border-1px($color)
+  position: relative
+  &:after
+    display: block
+    position: absolute
+    left: 0
+    bottom: 0
+    width: 100%
+    border-top: 1px solid $color
+    content: ' '
+```
+```css
+/*  base.styl */
+@media (-webkit-min-device-pixel-ratio: 1.5),(min-device-pixel-ratio: 1.5)
+  .border-1px
+    &::after
+      -webkit-transform: scaleY(0.7)
+      transform: scaleY(0.7)
+
+@media (-webkit-min-device-pixel-ratio: 2),(min-device-pixel-ratio: 2)
+  .border-1px
+    &::after
+      -webkit-transform: scaleY(0.5)
+      transform: scaleY(0.5)
+```
+类似的其他边框也可以用同样的方法实现
+
+38. webpack dev配置和接口mock
+39. stylus基本使用，sass基本使用
+40. 图标字体的使用  
+41. css sticky footer布局
+      Sass 和 SCSS 有什么区别？
+      Sass 和 SCSS 其实是同一种东西，我们平时都称之为 Sass，两者之间不同之处有以下两点：
+      文件扩展名不同，Sass 是以“.sass”后缀为扩展名，而 SCSS 是以“.scss”后缀为扩展名
+      语法书写方式不同，Sass 是以严格的缩进式语法规则来书写，不带大括号({})和分号(;)，而 SCSS 的语法书写和我们的 CSS 语法书写方式非常类似。
+      先来看一个示例：
+      Sass 语法
+      $font-stack: Helvetica, sans-serif  //定义变量
+      $primary-color: #333 //定义变量
+      body
+        font: 100% $font-stack
+        color: $primary-color
+      SCSS 语法
+      $font-stack: Helvetica, sans-serif;
+      $primary-color: #333;
+      body {
+        font: 100% $font-stack;
+        color: $primary-color;
+      }
+42. babel-runtime 和 babel-polyfill的区别
+43. css spirit精灵图合成一张可减少图片请求个数，从未性能优化。但是在webpack中建议使用多张的小图片，webpack的url-loader 会将图片转化成base64打包成js，不会有请求
+44. SVG矢量图可以收缩，放大缩小不会影响图片质量，代码中如何使用SVG图片？=>使用图标字体工具将SVG图片转化成font-icon(https://icomoon.io/)，一些小图标字体使用阿里的iconfont:https://www.iconfont.cn/
+45. 很多移动端设计稿都是按照iphone 6 的大小设计的=>iphone 6 dpr为2,其设备像素为375，物理像素是750.所以设计稿标注尺寸为两倍,说明设计稿是按照物理像素。
+46. vue-loader引用了postcss插件,会将vue中的css加上对应浏览器的前缀进行兼容
+47. webpack alias 路径配置 path.resolve(_dirname,'../')
+48. pc开发移动端项目如何实时预览（简单方法：找到pc电脑的ip=>cli.im 草料网输入网址生成二维码，微信扫描打开即可。前提：手机和电脑在一个局域网内。）
+49. vue中data为什么需要是个函数？因为组件会被复用，组件中的data也会被复用，如果使用对象在复用修改时会互相影响。使用函数每次调用该组件返回的是一个独立的数据，互相复用不会影响。
+50. Promise的深度解析和理解
+51. 父元素font-size设为0可以去除两个inline-block或者两个span之间的留白间隙，或者两个span不换行也会消除间歇
+52. 水平垂直居中的通用方案，双飞和圣杯等等布局怎么做
+53. chrome是无法显示12px以下的，但是手机上可以正常显示
+54. 背景图在底部且具有的模糊效果(需要结合上层的透明和下层的背景图filter实现)：
+```html
+    <header class="header">
+      <div class="background">
+        <img :src="seller.avatar" width="100%" height="100%">
+      </div>
+    </header>
+
+```
+```css
+  .header
+    position: relative
+    overflow: hidden
+    color: #fff
+    background: rgba(7, 17, 27, 0.5)
+    .background
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        z-index: -1
+        filter: blur(10px)
+```
+55. css sticky-footer 布局
+> 在网页设计中，Sticky footers设计是最古老和最常见的效果之一，大多数人都曾经经历过。它可以概括如下：如果页面内容不够长的时候，页脚块粘贴在视窗底部；如果内容足够长时，页脚块会被内容向下推送。
+- 固定高度的解决方案
+```html
+<header> 
+  <h1>Site name</h1>
+</header>
+<main> 
+  <p>Bacon Ipsum dolor sit amet... <!-- Filler text from baconipsum.com --></p>
+</main> 
+<footer> 
+  <p>© 2015 No rights reserved.</p> <p>Made with ♥ by an anonymous pastafarian.</p> 
+</footer>
+```
+> 如果我们假定页脚文本不会溢出容器，我们可以为容器推算出其高度：
+
+```css
+main { min-height: calc(100vh - 2.5em - 7em); /* Avoid padding/borders screwing up our height: */
+box-sizing: border-box; }
+```
+- flex布局解决方案
+  - 示例1
+```html
+<div v-show="detailShow" class="detail" transition="fade">
+  <div class="detail-wrapper clearfix">
+    <div class="detail-main">
+      <h1 class="name">{{seller.name}}</h1>
+      <div class="star-wrapper">
+        <!-- <star :size="48" :score="seller.score"></star> -->
+      </div>
+      <div class="title">
+        <div class="line"></div>
+        <div class="text">优惠信息</div>
+        <div class="line"></div>
+      </div>
+      <ul v-if="seller.supports" class="supports">
+        <li class="support-item" v-for="item in seller.supports">
+          <span class="icon" :class="classMap[seller.supports[$index].type]"></span>
+          <span class="text">{{seller.supports[$index].description}}</span>
+        </li>
+      </ul>
+      <div class="title">
+        <div class="line"></div>
+        <div class="text">商家公告</div>
+        <div class="line"></div>
+      </div>
+      <div class="bulletin">
+        <p class="content">{{seller.bulletin}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="detail-close" @click="hideDetail">
+    <i class="icon-close"></i>
+  </div>
+</div>
+```
+```css
+.detail
+  position: fixed
+  z-index: 100
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  overflow: auto
+  transition: all 0.5s
+  backdrop-filter: blur(10px)
+  &.fade-transition
+    opacity: 1
+    background: rgba(7, 17, 27, 0.8)
+  &.fade-enter, &.fade-leave
+    opacity: 0
+    background: rgba(7, 17, 27, 0)
+  .detail-wrapper
+    width: 100%
+    min-height: 100%
+    .detail-main
+      margin-top: 64px
+      padding-bottom: 64px
+      .name
+        line-height: 16px
+        text-align: center
+        font-size: 16px
+        font-weight: 700
+      .star-wrapper
+        margin-top: 18px
+        padding: 2px 0
+        text-align: center
+      .title
+        display: flex
+        width: 80%
+        margin: 28px auto 24px auto
+        .line
+          flex: 1
+          position: relative
+          top: -6px
+          border-bottom: 1px solid rgba(255, 255, 255, 0.2)
+        .text
+          padding: 0 12px
+          font-weight: 700
+          font-size: 14px
+
+      .supports
+        width: 80%
+        margin: 0 auto
+        .support-item
+          padding: 0 12px
+          margin-bottom: 12px
+          font-size: 0
+          &:last-child
+            margin-bottom: 0
+          .icon
+            display: inline-block
+            width: 16px
+            height: 16px
+            vertical-align: top
+            margin-right: 6px
+            background-size: 16px 16px
+            background-repeat: no-repeat
+            &.decrease
+              bg-image('decrease_2')
+            &.discount
+              bg-image('discount_2')
+            &.guarantee
+              bg-image('guarantee_2')
+            &.invoice
+              bg-image('invoice_2')
+            &.special
+              bg-image('special_2')
+          .text
+            line-height: 16px
+            font-size: 12px
+      .bulletin
+        width: 80%
+        margin: 0 auto
+        .content
+          padding: 0 12px
+          line-height: 24px
+          font-size: 12px
+  .detail-close
+    position: relative
+    width: 32px
+    height: 32px
+    margin: -64px auto 0 auto
+    clear: both
+    font-size: 32px
+```
+  - 示例2
+```html
+<header> 
+  <h1>Site name</h1>
+</header>
+<main> 
+  <p>Bacon Ipsum dolor sit amet... <!-- Filler text from baconipsum.com --></p>
+</main> 
+<footer> 
+  <p>© 2015 No rights reserved.</p> <p>Made with ♥ by an anonymous pastafarian.</p> 
+</footer>
+```
+```css
+body { display: flex; flex-flow: column; min-height: 100vh; } 
+main { flex: 1; }
+```
   1. 全网首发mpvue课程小程序全栈开发
   2. 06 9小时搞定微信小程序开发（完结）
   3. Webpack-四大维度解锁 Webpack 3(1).0 前端工程化
-  4. Vue.js 2.5 + cube-ui 重构饿了么 App
+  4. Vue.js 2.5 + cube-ui 重构饿了么 App(有四个分支1.0/2.0/mater/next)
   5. Vue-开发微信全家桶项目Vue-Node-MongoDB高级技术栈全覆盖(可选)/ 美团项目（可选）
   6. node项目上线部署
   7. 01.React全家桶+AntD 共享单车后台管理系统开发
   8. 03.APP开发之实战美团外卖
   9. 05.React16+React-Router4 从零打造企业级电商后台管理系统（全）(可选)
   10. 06.React高级实战 打造大众点评 WebApp（移动端）
-  11. 09.React.js入门与实战[开发适配PC端及移动端新闻头条平台]
+  11. 09.React.js入门与实战（开发适配PC端及移动端新闻头条平台）
   12. 14.React Native快速开发 厕所在哪App LBS定位 框架封装(可选)
+  
