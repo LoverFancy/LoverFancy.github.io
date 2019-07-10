@@ -562,7 +562,47 @@ border-1px($color)
 49. vue中data为什么需要是个函数？因为组件会被复用，组件中的data也会被复用，如果使用对象在复用修改时会互相影响。使用函数每次调用该组件返回的是一个独立的数据，互相复用不会影响。
 50. Promise的深度解析和理解
 51. 父元素font-size设为0可以去除两个inline-block或者两个span之间的留白间隙，或者两个span不换行也会消除间歇
-52. 水平垂直居中的通用方案，双飞和圣杯等等布局怎么做
+52. 水平垂直居中的通用方案，双飞和圣杯等等布局怎么做, flex布局，移动端vw/vh解决方案
+- flex布局左边固定，右边自适应
+> flex 属性是 flex-grow、flex-shrink 和 flex-basis 属性的简写属性。(flex-grow等分块/flex-shrink剩余空间分配/ flex-basis占位)
+> flex:1 flex:auto flex:none
+>flex: 1 1 auto flex:0 1 auto flex: 0 0 auto
+```html
+  <div class="goods">
+    <div class="menu-wrapper">
+    <div class="foods-wrapper">
+  </div>
+```
+```css
+  .goods
+    display: flex
+    position: absolute
+    top: 174px
+    bottom: 46px
+    width: 100%
+    overflow: hidden
+    .menu-wrapper
+      flex: 0 0 80px
+      // 解决android浏览器兼容问题
+      width: 80px
+      background: #f3f5f7
+    .foods-wrapper
+      flex: 1
+```
+- 垂直居中（.father{display:table} .child{display:ceil}）
+```css
+.menu-item
+    display: table
+    height: 54px
+    width: 56px
+    padding: 0 12px
+    line-height: 14px
+    .text
+      display: table-cell
+      width: 56px
+      vertical-align: middle
+      font-size: 12px
+```
 53. chrome是无法显示12px以下的，但是手机上可以正常显示
 54. 背景图在底部且具有的模糊效果(需要结合上层的透明和下层的背景图filter实现)：
 ```html
@@ -751,6 +791,31 @@ box-sizing: border-box; }
 body { display: flex; flex-flow: column; min-height: 100vh; } 
 main { flex: 1; }
 ```
+56. 打分五星的实现(v-for循环span,定义每个星星的off/half/on状态，依据成绩获取样式名，依据传入的type决定星星的大小)
+57. postcss=>(postcss-px-to-viewport/postcss-pxtorem)
+57. vue实现购物车(父：goods.vue/子：shopcart.vue/子：cartControll)=>实现小球动画需要将当前添加的el从cartControll传递到goods再到shopcart以获取小球的起始位置。通过事件派发和父组件触发子组件方法去传递，显得很复杂，体现了vue中事件传递的复杂性。没有react清晰，那么react是如何传递的呢？
+58. 函数柯里化
+
+```js
+// 封装 axios 用函数柯里化的方法将参数提前固化在内部
+export function get(url) {
+  return function(params = {}) {
+    // 返回的是promise
+    return axios.get(baseUrl + url, {
+      params
+    }).then((res) => {
+      const {errno, data} = res.data
+      if (errno === ERR_OK) {
+        return data
+      }
+    }).catch((e) => {
+    })
+  }
+}
+```
+59. axios如何封装get/post/put 上传？
+
+
   1. 全网首发mpvue课程小程序全栈开发
   2. 06 9小时搞定微信小程序开发（完结）
   3. Webpack-四大维度解锁 Webpack 3(1).0 前端工程化
