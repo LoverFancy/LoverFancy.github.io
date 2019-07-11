@@ -814,6 +814,34 @@ export function get(url) {
 }
 ```
 59. axios如何封装get/post/put 上传？
+60. 原生组件的开发，以及组件的抽象和封装
+61. 更改第三方库的css在scope内  >>> 或者  不用scope写css
+62. monent.js 基础库进行时间戳的换算，query-string可以解析浏览器后面的字符串为对象，也可以将对象解析为字符串    (queryString.parse(url);queryString.stringify(string)) 需要细化
+63. create-api和cube-ui的主要原理
+64. asset是js中的断言
+65. webpack打包文件名中的hash作用：为了实现浏览器缓存，提高用户体验。当打包文件内的内容内有发生变化时，hash值不会变化，再次发布资源时，用户如果访问过该js就会使用缓存的内容，而不需要再次请求。Gzipped的打包优化
+66. vue cli 3 npm run report可以将打包后的文件大小内容可视化，可查询和优化内容大小；查看webpack 配置 vue inspect >> output.js 从而审查webpack配置
+67. linux上下载和配置node简单方法
+- 获取操作系统版本 uname -a
+- 上node官网查找对应版本：https://npm.taobao.org/mirrors/node/v10.16.0/node-v10.16.0-linux-x64.tar.xz
+- 执行命令：
+  - cd /usr/local/  
+  - wget https://npm.taobao.org/mirrors/node/v10.16.0/node-v10.16.0-linux-x64.tar.xz 
+  - 从远端拉去到服务器并保存到 /usr/local/ 
+- 解压：tar -xvf node-v10.16.0-linux-x64.tar.xz
+- 重命名：mv node-v10.16.0-linux-x64 nodejs
+- cd nodejs/bin
+- node -v 可显示版本说明下载成功
+- 将服务器旧版本替换：通过软链的方式将新的可执行程序添加到环境变量中npm和node：
+- ln -s /usr/local/nodejs/bin/node /usr/local/bin
+- ln -s /usr/local/nodejs/bin/npm /usr/local/bin
+- vim /etc/profile=>更改PATH：export PATH=/usr/local/bin:$PATH
+- source /etc/profile =>执行node -v 检查
+- 克隆项目到服务器上(注意克隆要切换到正确分支) npm install（解决权限问题 chmod  777 ./xxxx）
+- 跑node让进程长链接：nohup node prod.server.js
+68. 配置nginx跑多个项目(不是二级域名，是端口转发=>原理：通过访问不同路径进行反向代理到不同的端口)
+  - 对于build的项目加载资源和接口会失败，因为在代码中接口和css等资源都是从根路径获取，但是经过转发后我们需要从 域名/sell/ 获取，所以对于css需要修改vue.config.js中的baseUrl: '' 替代默认的 '/'。对于接口更改api下的url进行拼接
+  - 
 
 
   1. 全网首发mpvue课程小程序全栈开发
