@@ -841,7 +841,58 @@ export function get(url) {
 - 跑node让进程长链接：nohup node prod.server.js
 68. 配置nginx跑多个项目(不是二级域名，是端口转发=>原理：通过访问不同路径进行反向代理到不同的端口)
   - 对于build的项目加载资源和接口会失败，因为在代码中接口和css等资源都是从根路径获取，但是经过转发后我们需要从 域名/sell/ 获取，所以对于css需要修改vue.config.js中的baseUrl: '' 替代默认的 '/'。对于接口更改api下的url进行拼接
-  - 
+69. node后台运行
+pm2(推荐)
+官网地址：http://pm2.io/
+npm install -g pm2
+pm2 start app.js        // 启动
+pm2 start app.js -i max //启动 使用所有CPU核心的集群
+pm2 stop app.js         // 停止
+pm2 stop all            // 停止所有
+pm2 restart app.js      // 重启
+pm2 restart all         // 重启所有
+pm2 delete  app.js      // 关闭
+
+现在最流行的工具是 PM2：https://github.com/Unitech/pm2
+
+你可以简单地在全局安装 npm install -g pm2，然后用 PM2 启动应用即可。
+
+可以使用 PM2 命令直接启动应用，或者使用 process.json：
+
+{
+    "name": "your-app",
+    "script": "inde.js",
+    "watch": true,
+    "ignore_watch": ["logs", "assets", "views"],
+    "env": {
+        "NODE_ENV": "production",
+        },
+    "instances": 1,
+    "log_date_format": "YYYY-MM-DD hh:mm:ss",
+}
+然后用 pm2 start process.json 来启动
+
+几个常用命令：
+
+pm2 list：显示所有应用
+pm2 monit：显示应用监控面板
+pm2 logs：显示实时 log
+pm2 restart [id]：重启应用
+pm2 stop [id]：停止应用
+pm2 kill [id]：关闭应用
+
+
+nohup
+nohup node app.js &
+
+forever
+github地址： https://github.com/nodejitsu/forever
+npm install forever -g
+forever start app.js    //启动
+forever stop app.js     //关闭
+forever stopall         //关闭全部
+forever restart app.js  //重启
+forever restartall      //重启全部
 
 
   1. 全网首发mpvue课程小程序全栈开发
