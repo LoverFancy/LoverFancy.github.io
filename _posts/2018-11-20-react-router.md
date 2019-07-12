@@ -69,13 +69,7 @@ class PrivateRoute extends Component {
           isLogin ? (
             <Component {...props} />
           ) : (
-            <Redirect
-            // github build failed
-              // to={{
-              //   pathname: "/login",
-              //   state: { from: props.location.pathname }
-              // }}
-            />
+            <Redirect to={{ pathname: "/login",state: { from: props.location.pathname }}}/>
           )
         }
       />
