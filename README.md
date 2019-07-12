@@ -5,7 +5,7 @@
 本博客分享和记录博主前端开发过程中的学习和理解，起于前端，走在全栈路上。
 
 
-欢迎大家访问[博客](skiofox.top)或者[star](https://github.com/LoverFancy)
+欢迎大家访问[博客](blog.skiofox.top)或者[star](https://github.com/LoverFancy)
 
 
 [Stay Hungry and Stay Foolish](http://www.iqiyi.com/w_19rrhpmkw9.html)
@@ -47,6 +47,7 @@
 - 数据库相关
     - mysql
     - MongoDB
+	- redis
 
 
 
@@ -54,4 +55,4 @@
 
 ## 致谢
 
-这个Blog模板来自[IronSummitMedia/startbootstrap-clean-blog-jekyll](https://github.com/IronSummitMedia/startbootstrap-clean-blog-jekyll), 感谢这个作者。
+这个Blog主题来自[],感谢这个作者。
