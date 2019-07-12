@@ -1,4 +1,4 @@
-1. fastclick解决移动端300ms延时的问题
+<!-- 1. fastclick解决移动端300ms延时的问题
     fastclick.attach(document.body)
 2. babel-runtime是对ES6语法进行转义
 3. babel-polyfill对ES6语法进行补丁
@@ -636,7 +636,7 @@ border-1px($color)
   <h1>Site name</h1>
 </header>
 <main> 
-  <p>Bacon Ipsum dolor sit amet... <!-- Filler text from baconipsum.com --></p>
+  <p>Bacon Ipsum dolor sit amet...</p>
 </main> 
 <footer> 
   <p>© 2015 No rights reserved.</p> <p>Made with ♥ by an anonymous pastafarian.</p> 
@@ -656,7 +656,6 @@ box-sizing: border-box; }
     <div class="detail-main">
       <h1 class="name">{{seller.name}}</h1>
       <div class="star-wrapper">
-        <!-- <star :size="48" :score="seller.score"></star> -->
       </div>
       <div class="title">
         <div class="line"></div>
@@ -781,7 +780,7 @@ box-sizing: border-box; }
   <h1>Site name</h1>
 </header>
 <main> 
-  <p>Bacon Ipsum dolor sit amet... <!-- Filler text from baconipsum.com --></p>
+  <p>Bacon Ipsum dolor sit amet... </p>
 </main> 
 <footer> 
   <p>© 2015 No rights reserved.</p> <p>Made with ♥ by an anonymous pastafarian.</p> 
@@ -907,4 +906,4 @@ forever restartall      //重启全部
   10. 06.React高级实战 打造大众点评 WebApp（移动端）
   11. 09.React.js入门与实战（开发适配PC端及移动端新闻头条平台）
   12. 14.React Native快速开发 厕所在哪App LBS定位 框架封装(可选)
-  
+   -->
