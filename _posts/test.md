@@ -262,4 +262,11 @@ audio标签
   10. 06.React高级实战 打造大众点评 WebApp（移动端）
   11. 09.React.js入门与实战（开发适配PC端及移动端新闻头条平台）
   12. 14.React Native快速开发 厕所在哪App LBS定位 框架封装(可选)
+  13. 税计算百宝箱小程序和事业部公众号
+  14. Koa2实现电影微信公众号前后端开发(Koa2 + MongoDB + Mongoose + Pug + Bootstrap + 微信 JS-SDK)
+  15. Koa2框架搭建电影预告片网站(Node.js+Koa2+Babel+Parcel+AntDesign+Puppeter从0开始搭建完整网站)
+  16. 7天搞定Node.js微信公众号
+  17. 掌握Taro多端框架 快速上手小程序/H5开发
+  18. 前端下一代开发语言TypeScript 从基础到axios实战(从零开始重构一个功能完整的JS库，并进行单元测试与部署发布，是学习造轮子的不二之选)
+  19. Vue2.5实战微信读书 媲美原生App的企业级Web书城
    -->
