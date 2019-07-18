@@ -260,7 +260,7 @@ audio标签
   8. 03.APP开发之实战美团外卖
   9. 05.React16+React-Router4 从零打造企业级电商后台管理系统（全）(可选)
   10. 06.React高级实战 打造大众点评 WebApp（移动端）
-  11. 09.React.js入门与实战（开发适配PC端及移动端新闻头条平台）
+  11. 09.React.js入门与实战（开发适配PC端及移动端新闻头条平台）(可选)
   12. 14.React Native快速开发 厕所在哪App LBS定位 框架封装(可选)
   13. 税计算百宝箱小程序和事业部公众号
   14. Koa2实现电影微信公众号前后端开发(Koa2 + MongoDB + Mongoose + Pug + Bootstrap + 微信 JS-SDK)
