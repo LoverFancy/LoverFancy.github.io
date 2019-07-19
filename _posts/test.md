@@ -252,10 +252,11 @@ audio标签
 
   1. 全网首发mpvue课程小程序全栈开发
   2. 06 9小时搞定微信小程序开发（完结）
-  3. Webpack-四大维度解锁 Webpack 3(1).0 前端工程化
-  4. Vue.js 2.5 + cube-ui 重构饿了么 App(有四个分支1.0/2.0/mater/next)
+  3. Webpack-四大维度解锁 Webpack 3(1).0 前端工程化 ok
+  4. 极客webpack4讲解课程
+  4. Vue.js 2.5 + cube-ui 重构饿了么 App(有四个分支1.0/2.0/mater/next) ok
   5. Vue-开发微信全家桶项目Vue-Node-MongoDB高级技术栈全覆盖(可选)/ 美团项目（可选）
-  6. node项目上线部署
+  6. node项目上线部署 ok
   7. 01.React全家桶+AntD 共享单车后台管理系统开发
   8. 03.APP开发之实战美团外卖
   9. 05.React16+React-Router4 从零打造企业级电商后台管理系统（全）(可选)
