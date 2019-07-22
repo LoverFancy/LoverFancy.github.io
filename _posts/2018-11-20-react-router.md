@@ -15,10 +15,13 @@ tags:
 >react-router
 
 ## react-router-dom
+
 1. 特点：
+
   - 路由也是组件
   - 分布式配置
   - 包含式匹配
+
 2. 路由的基本用法
 ```js
 // RouterSample.js
@@ -61,7 +64,7 @@ function App(props) {
 class PrivateRoute extends Component {
   render() {
     const { isLogin, component: Component, ...rest } = this.props;
-    // redner和component选项二选一
+    // render和component选项二选一
     return (
       <Route
         {...rest}
