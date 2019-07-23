@@ -277,7 +277,223 @@ audio标签
   2. css实现图标库
   3. calc(100vh)
   4. react-router 4中嵌套路由是用render函数去匹配
-   -->
+  5. react中的事件
+  传参数需要箭头函数写法
+  <Button type="primary" onClick={()=>this.showMessage('success')}>Success</Button>
+  <Button type="primary" onClick={() =>this.handleOpen('showModal1')}>Open</Button>
+  <Button type="primary" onClick={() =>this.handleOpen('showModal2')}>自定义页脚</Button>
 
+```js
+// 传递参数的事件写法和动态参数的触发事件
+import React from 'react'
+import { Card, Button, Modal } from 'antd'
+import './ui.less'
+export default class Buttons extends React.Component {
+
+    state = {
+        showModal1: false,
+        showModal2: false,
+        showModal3: false,
+        showModal4: false
+    }
+ 
+    handleOpen = (type)=>{
+        this.setState({
+            // [type]会作为是一个变量设置
+            // type只是简单的key
+            [type]:true
+        })
+    }
+
+    handleConfirm = (type)=>{
+        Modal[type]({
+            title:'确认？',
+            content:'你确定你学会了React了吗？',
+            onOk(){
+                console.log('Ok')
+            },
+            onCancel(){
+                console.log('Cancel')
+            }
+        })
+    }
+    render(){
+        return (
+            <div>
+                <Card title="基础模态框" className="card-wrap">
+                    // 不能直接使用onClick={this.handleOpen('showModal1')},因为这样写是执行该函数，而不是给事件绑定函数。我们应该使用箭头函数去绑定这个事件，在点击的时候执行箭头函数内部的事件传递参数。
+                    <Button type="primary" onClick={() =>this.handleOpen('showModal1')}>Open</Button>
+                    <Button type="primary" onClick={() =>this.handleOpen('showModal2')}>自定义页脚</Button>
+                    <Button type="primary" onClick={() =>this.handleOpen('showModal3')}>顶部20px弹框</Button>
+                    <Button type="primary" onClick={() =>this.handleOpen('showModal4')}>水平垂直居中</Button>
+                </Card>
+                <Card title="信息确认框" className="card-wrap">
+                    <Button type="primary" onClick={() => this.handleConfirm('confirm')}>Confirm</Button>
+                    <Button type="primary" onClick={() => this.handleConfirm('info')}>Info</Button>
+                    <Button type="primary" onClick={() => this.handleConfirm('success')}>Success</Button>
+                    <Button type="primary" onClick={() => this.handleConfirm('warning')}>Warning</Button>
+                </Card>
+                <Modal
+                    title="React"
+                    visible={this.state.showModal1}
+                    onCancel={()=>{
+                        this.setState({
+                            showModal1:false
+                        })
+                    }}
+                >
+                    <p>React Learning</p>
+                </Modal>
+                <Modal
+                    title="React"
+                    visible={this.state.showModal2}
+                    okText="好的"
+                    cancelText="算了"
+                    onCancel={() => {
+                        this.setState({
+                            showModal2: false
+                        })
+                    }}
+                >
+                    <p>React Learning</p>
+                </Modal>
+                <Modal
+                    title="React"
+                    // 自定义样式
+                    style={{top:20}}
+                    visible={this.state.showModal3}
+                    onCancel={() => {
+                        this.setState({
+                            showModal3: false
+                        })
+                    }}
+                >
+                    <p>React Learning</p>
+                </Modal>
+                <Modal
+                    title="React"
+                    // 自定义样式
+                    wrapClassName="vertical-center-modal"
+                    visible={this.state.showModal4}
+                    onCancel={() => {
+                        this.setState({
+                            showModal4: false
+                        })
+                    }}
+                >
+                    <p>React Learning</p>
+                </Modal>
+            </div>
+        );
+    }
+}
+```
+6. es6 javascript的class的静态方法、属性和实例属性
+
+```js
+// 类相当于实例的原型， 所有在类中定义的方法， 都会被实例继承。 如果在一个方法前， 加上static关键字， 就表示该方法不会被实例继承， 而是直接通过类来调用， 这就称为“ 静态方法”。
+
+class Foo {
+	static classMethod() {
+		return 'hello';
+	}
+}
+Foo.classMethod() // 'hello'
+var foo = new Foo();
+foo.classMethod()
+	// TypeError: foo.classMethod is not a function
+
+// 上面代码中， Foo类的classMethod方法前有static关键字， 表明该方法是一个静态方法， 可以直接在Foo类上调用（ Foo.classMethod()）， 而不是在Foo类的实例上调用。 如果在实例上调用静态方法， 会抛出一个错误， 表示不存在该方法。
+父类的静态方法， 可以被子类继承。
+
+class Foo {
+	static classMethod() {
+		return 'hello';
+	}
+}
+class Bar extends Foo {}
+Bar.classMethod(); // 'hello'
+
+// 上面代码中， 父类Foo有一个静态方法， 子类Bar可以调用这个方法。静态方法也是可以从super对象上调用的。
+
+class Foo {
+	static classMethod() {
+		return 'hello';
+	}
+}
+class Bar extends Foo {
+	static classMethod() {
+		return super.classMethod() + ', too';
+	}
+}
+Bar.classMethod();
+
+// 静态属性，静态属性指的是 Class 本身的属性， 即Class.propname， 而不是定义在实例对象（ this） 上的属性。
+
+class Foo {}
+Foo.prop = 1;
+Foo.prop // 1
+
+// 上面的写法为Foo类定义了一个静态属性prop。目前， 只有这种写法可行， 因为 ES6 明确规定， Class 内部只有静态方法， 没有静态属性。
+
+//  以下两种写法都无效
+class Foo {
+	//  写法一
+	prop: 2
+		//  写法二
+	static prop: 2
+}
+Foo.prop // undefined
+
+// ES7 有一个静态属性的提案， 目前 Babel 转码器支持。这个提案对实例属性和静态属性， 都规定了新的写法。（ 1） 类的实例属性.类的实例属性可以用等式， 写入类的定义之中。
+
+class MyClass {
+	myProp = 42;
+	constructor() {
+		console.log(this.myProp); // 42
+	}
+}
+// 上面代码中， myProp就是MyClass的实例属性。 在MyClass的实例上， 可以读取这个属性。以前， 我们定义实例属性， 只能写在类的constructor方法里面。
+class ReactCounter extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			count: 0
+		};
+	}
+}
+// 上面代码中， 构造方法constructor里面， 定义了this.state属性。有了新的写法以后， 可以不在constructor方法里面定义。
+class ReactCounter extends React.Component {
+	state = {
+		count: 0
+	};
+}
+//这种写法比以前更清晰。为了可读性的目的， 对于那些在constructor里面已经定义的实例属性， 新写法允许直接列出。
+class ReactCounter extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			count: 0
+		};
+	}
+	state;
+}
+2） 类的静态属性:只要在上面的实例属性写法前面， 加上static关键字就可以了。
+class MyClass {
+static myStaticProp = 42;
+constructor() {
+    console.log(MyClass.myProp); // 42
+  }
+}
+
+//  老写法
+class Foo {}
+Foo.prop = 1;
+//  新写法
+class Foo {
+	static prop = 1;
+}
+// 上面代码中， 老写法的静态属性定义在类的外部。 整个类生成以后， 再生成静态属性。 这样让人很容易忽略这个静态属性.也不符合相关代码应该放在一起的代码组织原则。 另外， 新写法是显式声明（ declarative）， 而不是赋值处理， 语义更好。
+```
 
    
