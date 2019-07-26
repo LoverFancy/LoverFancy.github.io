@@ -24,7 +24,7 @@ tags:
 
 > Provider.js
 
-  ```js
+  ```jsx
     // Provider传递store
     export default class Provider extends Component {
       getChildContext() {
@@ -46,7 +46,7 @@ tags:
   ```
 > connect 是一个高级组件，它接收从 Provider 中的 Context 传入的值，将其经过 mapStateToProps、mapDispatchToProps、mergeProps、options 等方法后，得到一个新值，再将其以 props 的方式传递给与它关联的组件。
 
-  ```js
+  ```jsx
     // 默认需要合并到props上的值
     const defaultMergeProps = (stateProps, dispatchProps, parentProps) => ({
       ...parentProps,
@@ -168,7 +168,7 @@ tags:
 
 ## redux-thunk中间件解析
 
-  ```js
+  ```jsx
     const thunk = ({dispatch,getState})=>next=>action=>{
       // 判断action是否是函数，是函数就执行，然后进行dispatch
       if (typeof action == 'function') {

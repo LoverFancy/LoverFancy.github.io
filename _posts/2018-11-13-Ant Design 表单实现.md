@@ -15,7 +15,7 @@ tags:
 
 ## ant design 表单
 
-```js
+```jsx
 import React from 'react';
 import { Form, Icon, Input, Button } from "antd";
 
@@ -102,7 +102,7 @@ export default WrappedHorizontalLoginForm
 
 ## 表单实现
 
-```js
+```jsx
 import React, { Component } from "react";
 import { Icon } from "antd";
 

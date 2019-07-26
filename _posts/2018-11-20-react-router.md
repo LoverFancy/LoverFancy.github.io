@@ -22,7 +22,7 @@ tags:
 
 2. 路由的基本用法
 
-  ```js
+  ```jsx
   // RouterSample.js
   import React, { Component } from "react";
   import { BrowserRouter, Link, Route, Switch, Redirect } from "react-router-dom";
@@ -187,7 +187,7 @@ tags:
   }
   ```
 
-  ```js
+  ```jsx
   // store/user.redux.js
   const initialState = {
     isLogin: false
