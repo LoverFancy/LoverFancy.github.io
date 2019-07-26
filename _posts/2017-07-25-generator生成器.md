@@ -11,7 +11,9 @@ tags:
 ---
 
 ## generator生成器
+
 > 可以控制函数内部代码块的执行，起到异步控制的作用
+
 ```js
 // function* g() {
 //   yield "a";
