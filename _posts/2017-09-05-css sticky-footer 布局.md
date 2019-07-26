@@ -17,7 +17,8 @@ tags:
 
 1. 方法1：将内容部分的底部外边距设为负数
 > 这是个比较主流的用法，把内容部分最小高度设为100%，再利用内容部分的负底部外边距值来达到当高度不满时，页脚保持在窗口底部，当高度超出则随之推出的效果。
-```html
+
+```
 <body>
   <div class="wrapper">
       content
@@ -26,6 +27,7 @@ tags:
   <footer class="footer"></footer>
 </body>
 ```
+
 ```css
 html, body {
   height: 100%;
@@ -45,7 +47,8 @@ html, body {
 2. 将页脚的顶部外边距设为负数（同第一种方法，缺点都是要添加不必要的html元素作为填充）
 > 以上两种方法的footer高度都是固定的，通常来说这不利于网页布局：内容会改变，它们都是弹性的，一旦内容超出固定高度就会破坏布局。
 3. flexbox弹性盒布局
- ```html
+
+ ```
  <body>
   <div class="content">
     content
@@ -53,6 +56,7 @@ html, body {
   <footer class="footer"></footer>
 </body>
 ```
+
 ```css
 html {
   height: 100%;
@@ -69,12 +73,14 @@ body {
 > 你还可以在上面添加header或在下面添加更多元素。核心：flex:1 可以使内容自动伸缩。
 4. absolute
 > 通过绝对定位处理应该是常见的方案，只要使得页脚一直定位在主容器预留占位位置。
-```html
+
+```
 <div class="wrapper">
     <div class="content"><!-- 页面主体内容区域 --></div>
     <div class="footer"><!-- 需要做到 Sticky Footer 效果的页脚 --></div>
 </div>
 ```
+
 ```css
 html, body {
     height: 100%;
@@ -94,12 +100,14 @@ html, body {
 > 这个方案需指定 html、body 100% 的高度，且 content 的 padding-bottom 需要与 footer 的 height 一致。
 5. calc
 > 通过计算函数 calc 计算（视窗高度 - 页脚高度）赋予内容区最小高度，不需要任何额外样式处理，代码量最少、最简单。
-```html
+
+```
 <div class="wrapper">
     <div class="content"><!-- 页面主体内容区域 --></div>
     <div class="footer"><!-- 需要做到 Sticky Footer 效果的页脚 --></div>
 </div>
 ```
+
 ```css
 .content {
     min-height: calc(100vh - 50px);
@@ -111,7 +119,7 @@ html, body {
 > 如果不需考虑 calc() 以及 vh 单位的兼容情况，这是个很理想的实现方案。同样的问题是 footer 的高度值需要与 content 其中的计算值一致。
 6. Grid网格布局
 
-```html
+```
 <body>
   <div class="content">
     content
