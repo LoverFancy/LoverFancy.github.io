@@ -167,6 +167,7 @@ tags:
 > 在 store 发生改变时，调用updateMergedPropsIfNeeded方法更改需要传递给子组件的props值，因为在页面的componentDidmount中有注册监听store发生变化的函数，在 store 发生改变的时候，就会重新计算，高级组件还使用了shouldComponentUpdate钩子函数来监听 props 的改变，判断是否需要重新刷新，以达到渲染性能优化的效果。
 
 ## redux-thunk中间件解析
+
   ```js
     const thunk = ({dispatch,getState})=>next=>action=>{
       // 判断action是否是函数，是函数就执行，然后进行dispatch
