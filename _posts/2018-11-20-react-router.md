@@ -22,7 +22,7 @@ tags:
 
 2. 路由的基本用法
 
-  ```js
+  ```
     // RouterSample.js
     import React, { Component } from "react";
     import { BrowserRouter, Link, Route, Switch, Redirect } from "react-router-dom";
@@ -47,12 +47,12 @@ tags:
           </ul>
           {/* 路由配置 Switch代表只能配置其中一个*/}
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={Home}/>
             {/* <Route path="/about" component={About} /> */}
-            <PrivateRoute path="/about" component={About} />
-            <Route path="/detail/:course" component={Detail} />
-            <Route path="/login" component={Login} />
-            <Route component={NoMatch} />
+            <PrivateRoute path="/about" component={About}/>
+            <Route path="/detail/:course" component={Detail}/>
+            <Route path="/login" component={Login}/>
+            <Route component={NoMatch}/>
           </Switch>
         </div>
       );
@@ -69,7 +69,7 @@ tags:
             {...rest}
             render={props =>
               isLogin ? (
-                <Component {...props} />
+                <Component {...props}/>
               ) : (
                 <Redirect to={{ pathname: "/login",state: { from: props.location.pathname }}}/>
               )
@@ -187,7 +187,7 @@ tags:
     }
   ```
 
-  ```js
+  ```
     // store/user.redux.js
     const initialState = {
       isLogin: false
