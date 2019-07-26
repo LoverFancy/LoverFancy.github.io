@@ -23,6 +23,7 @@ tags:
   - 包含式匹配
 
 2. 路由的基本用法
+
 ```js
 // RouterSample.js
 import React, { Component } from "react";
@@ -186,7 +187,6 @@ export default class RouteSample extends Component {
     );
   }
 }
-
 ```
 
 ```js
