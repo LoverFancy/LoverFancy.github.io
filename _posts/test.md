@@ -165,32 +165,7 @@ audio标签
 50. Promise的深度解析和理解
 51. 父元素font-size设为0可以去除两个inline-block或者两个span之间的留白间隙，或者两个span不换行也会消除间歇
 52. 水平垂直居中的通用方案，双飞和圣杯等等布局怎么做, flex布局，移动端vw/vh解决方案
-- flex布局左边固定，右边自适应
-> flex 属性是 flex-grow、flex-shrink 和 flex-basis 属性的简写属性。(flex-grow等分块/flex-shrink剩余空间分配/ flex-basis占位)
-> flex:1 flex:auto flex:none
->flex: 1 1 auto flex:0 1 auto flex: 0 0 auto
-```html
-  <div class="goods">
-    <div class="menu-wrapper">
-    <div class="foods-wrapper">
-  </div>
-```
-```css
-  .goods
-    display: flex
-    position: absolute
-    top: 174px
-    bottom: 46px
-    width: 100%
-    overflow: hidden
-    .menu-wrapper
-      flex: 0 0 80px
-      // 解决android浏览器兼容问题
-      width: 80px
-      background: #f3f5f7
-    .foods-wrapper
-      flex: 1
-```
+
 - 垂直居中（.father{display:table} .child{display:ceil}）
 ```css
 .menu-item
