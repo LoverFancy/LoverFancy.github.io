@@ -227,17 +227,13 @@ audio标签
 
   1. 全网首发mpvue课程小程序全栈开发
   2. 06 9小时搞定微信小程序开发（完结）
-  3. Webpack-四大维度解锁 Webpack 3(1).0 前端工程化 ok
   4. 极客webpack4讲解课程
-  4. Vue.js 2.5 + cube-ui 重构饿了么 App(有四个分支1.0/2.0/mater/next) ok
-  5. Vue-开发微信全家桶项目Vue-Node-MongoDB高级技术栈全覆盖(可选)/ 美团项目（可选）
+  5. Redux+React Router+Node.js全栈开发
   6. node项目上线部署 ok
-  7. 01.React全家桶+AntD 共享单车后台管理系统开发
-  8. 03.APP开发之实战美团外卖
-  9. 05.React16+React-Router4 从零打造企业级电商后台管理系统（全）(可选)
+  7. React16.4 开发简书项目 从零基础入门到实战
   10. 06.React高级实战 打造大众点评 WebApp（移动端）
   11. 09.React.js入门与实战（开发适配PC端及移动端新闻头条平台）(可选)
-  12. 14.React Native快速开发 厕所在哪App LBS定位 框架封装(可选)
+  12. 贯穿全栈React Native开发App
   13. 税计算百宝箱小程序和事业部公众号
   14. Koa2实现电影微信公众号前后端开发(Koa2 + MongoDB + Mongoose + Pug + Bootstrap + 微信 JS-SDK)
   15. Koa2框架搭建电影预告片网站(Node.js+Koa2+Babel+Parcel+AntDesign+Puppeter从0开始搭建完整网站)
@@ -253,7 +249,6 @@ audio标签
   22. 新版React Native+Redux打造高质量上线App
 
   23. React源码深度解析 高级前端工程师必备技能
-
 
   24. Node.js开发仿知乎服务端 深入理解RESTful API
 
