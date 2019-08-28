@@ -373,3 +373,4 @@ export default class Buttons extends React.Component {
 
 ```
 
+1. VP820 Cluster Development:①develop the new model use kanzi for cluster.②modify the UI in cluster of the old model from SPM.③complete the data communication between QNX with KANZI.④fix the issue from QNX team and Test team. 2. VP820 Grand Ceremony: ①transfer the 3D show car function from CES version to main version.② modify the boot animation in cluster on CES version.
