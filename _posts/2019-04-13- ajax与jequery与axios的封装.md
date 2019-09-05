@@ -1,14 +1,15 @@
 ---
 layout:     post
-title:      JS中的克隆
-subtitle:   JS中的克隆
-date:       2019-03-25
+title:      ajax与jequery与axios的封装
+subtitle:   ajax与jequery与axios的封装
+date:       2019-04-13
 author:     SkioFox
-header-img: img/post-bg-alibaba.jpg
+header-img: img/post-bg-iWatch.jpg
 catalog: true
 tags:
-- 浅拷贝
-- 深拷贝
+- ajax
+- axios
+- fetch
 
 ---
 ### 原生ajax
@@ -122,6 +123,144 @@ var myNewAjax=function(url){
 ```
 
 ### axios
+
+- get请求
+    ```js
+    axios.get('url',{
+        params:{
+            id:'接口配置参数（相当于url?id=xxxx）'，
+        },
+    }).then(function(res){
+        console.log(res);//处理成功的函数 相当于success
+    }).catch(function(error){
+        console.log(error)//错误处理 相当于error
+    })
+    ```
+- post请求
+
+    ```js
+        axios.post('uel',{data:xxx},{
+            headers:xxxx,
+        }).then(function(res){
+            console.log(res);//处理成功的函数 相当于success
+        }).catch(function(error){
+            console.log(error)//错误处理 相当于error
+        })
+    ```
+- axios实现
+
+    ```js
+        // 执行返回一个promise对象
+        // 能够通过create方法配置初始化参数
+        // 包含所有的ajax的方法并返回promise对象
+        // 支持peomise.all并能用spread处理
+        (function () {
+            function myAxios(options = {}) {
+                myAxios.createDef = myAxios.createDef || {};
+                myAxios._default = {
+                    method: 'GET',
+                    url: '',
+                    baseURL: '',
+                    cache: false,
+                    data: null,
+                    params: null,
+                    headers: {},
+                    dataType: 'JSON',
+                }
+                let {method,url,baseURL,cache,data,params,headers,dataType}={...myAxios._default, ...myAxios.createDef,...options};
+                if (/^(get|delete|head|options)$/i.test(method)) {//get系列
+                    if (params) {
+                        url += /\?/g.test(url) ? '&' + myAxios.paramsSerializer(params) : '?' + myAxios.paramsSerializer(params);
+                    }
+                    if (cache === false) {
+                        url += /\?/g.test(url) ? '&_=' + new Date() : '?_=' + new Date();
+                    }
+                } else {
+                    if (data) {
+                        data = myAxios.paramsSerializer(data);
+                    }
+                }
+                ;
+                return new Promise(function (resolve, reject) {
+                    let xhr = new XMLHttpRequest();
+                    xhr.open(method, `${baseURL}${url}`);
+                    if (headers && typeof headers == 'object') {
+                        for (let attr in headers) {
+                            if (!headers.hasOwnProperty(attr)) {
+                                let val = /[\u4e00-\u9fa5]/.test(headers[attr]) ? encodeURIComponent(headers[attr]) : headers[attr];
+                                xhr.setRequestHeader(attr, val);
+                            }
+                        }
+                    }
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == 4) {
+                            if (/2\d{2}/.test(xhr.status)) {
+                                let result = xhr.responseText;
+                                dataType = dataType.toUpperCase();
+                                dataType === 'JSON' ? result = JSON.parse(result) : (dataType === 'XML' ? result = xhr.responseXML : null);
+                                resolve(result);
+                            } else {
+                                reject('error');
+                            }
+                        }
+                    }
+                    xhr.send(data);
+                })
+            };
+            myAxios.paramsSerializer = function (params) {
+                if (typeof params == 'string') {
+                    return params;
+                }
+                if (!params) {
+                    return null;
+                }
+                if (typeof params == 'object') {
+                    let res = '';
+                    for (let attr in params) {
+                        res += `${attr}=${params[attr]}&`;
+                    }
+                    res = res.substring(0, res.length - 1);
+                    return res;
+                }
+            };
+            myAxios.all = function (data) {
+                return Promise.all(data);
+            };
+            myAxios.spread = function (callback) {
+                return function (arg) {
+                    callback.apply(null, arg);
+                }
+            };
+            myAxios.create = function (options) {
+                if (options && typeof options == 'object') {
+                    myAxios.createDef = options;
+                }
+            };
+
+            ['get', 'delete', 'head', 'options'].forEach(item => {
+                myAxios[item] = function (url, options = {}) {
+                    options = {
+                        ...options,
+                        url: url,
+                        method: item.toUpperCase()
+                    };
+                    return myAxios(options);
+                }
+            });
+            ['post', 'put', 'patch'].forEach(item => {
+                myAxios[item] = function (url, data = {}, options = {}) {
+                    options = {
+                        ...options,
+                        url: url,
+                        method: item.toUpperCase(),
+                        data: data,
+                    };
+                    return myAxios(options);
+                }
+            });
+        window.myAxios=myAxios;
+        })()
+    ```
 
 ### fetch
 

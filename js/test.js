@@ -163,30 +163,323 @@
 // console.log(son1 instanceof Son);  // true
 // console.log(son1 instanceof Father);  //true
 
-class Father{
-    constructor(name){
-        this.name = name;
-    }
-    sayName(){
-        console.log(this.name);
-    }
-}
-class Son extends Father{  //extents后面跟表示要继承的类型
-    constructor(name, age){
-        super(name);  //相当于以前的：Father.call(this, name);
-        this.age = age;
-    }
-    //子类独有的方法
-    sayAge(){
-        console.log(this.age);
-    }
-    //子类中的方法会屏蔽到父类中的同名方法。
-    sayName(){
-        super.sayName();  //调用被覆盖的父类中的方法。 
-        console.log("我是子类的方法，我屏蔽了父类：" + this.name);
-    }
-}
+// class Father{
+//     constructor(name){
+//         this.name = name;
+//     }
+//     sayName(){
+//         console.log(this.name);
+//     }
+// }
+// class Son extends Father{  //extents后面跟表示要继承的类型
+//     constructor(name, age){
+//         super(name);  //相当于以前的：Father.call(this, name);
+//         this.age = age;
+//     }
+//     //子类独有的方法
+//     sayAge(){
+//         console.log(this.age);
+//     }
+//     //子类中的方法会屏蔽到父类中的同名方法。
+//     sayName(){
+//         super.sayName();  //调用被覆盖的父类中的方法。 
+//         console.log("我是子类的方法，我屏蔽了父类：" + this.name);
+//     }
+// }
 
-var son1 = new Son("李四", 30);
-son1.sayAge();
-son1.sayName();
+// var son1 = new Son("李四", 30);
+// son1.sayAge();
+// son1.sayName();
+
+// let data = { price: 5, quantity: 2 }
+// let target = null
+// class Dep {
+//     constructor () {
+//         this.subscribers = []
+//     }
+// depend () {
+//     if (target && !this.subscribers.includes(target)) {
+//         this.subscribers.push(target) 
+//     }
+// }
+// notify () {
+//     this.subscribers.forEach(sub => sub())
+// }
+// }
+// Object.keys(data).forEach(key => {
+//     let internalValue = data[key]
+
+//     const dep = new Dep()
+
+//     Object.defineProperty(data, key, {
+//         // 对象方法的简写形式
+//         get() {
+//             dep.depend()
+//             return internalValue
+//         },
+//         set(newVal) {
+//             internalValue = newVal
+//             dep.notify()
+//         }
+//     })
+// })
+// function watcher(myFun) {
+//     target = myFun
+//     target()
+//     target = null
+// }
+// watcher(() => {
+//     data.total = data.price * data.quantity
+// })
+// console.log("total = " + data.total)
+// data.price = 20
+// console.log("total = " + data.total)
+// data.quantity = 10
+// console.log("total = " + data.total)
+// let data = { price: 5, quantity: 2 }
+// let deps = new Map(); // 创建一个Map对象
+// // Dep class并不需要改动。单纯使用Proxy替换Object.defineProperty
+// class Dep {
+//     constructor () {
+//         this.subscribers = []
+//     }
+//     depend () {
+//         if (target && !this.subscribers.includes(target)) {
+//             this.subscribers.push(target)
+//         }
+//     }
+//     notify () {
+//         this.subscribers.forEach(sub => sub())
+//     }
+// }
+// Object.keys(data).forEach(key => {
+//     // 为每个属性都设置一个依赖实例并放入deps 中
+//     deps.set(key, new Dep());
+// });
+// let data_without_proxy = data; // 保存源对象
+// data = new Proxy(data_without_proxy, {
+// // 重写数据以在中间创建一个代理
+//     get(obj, key) {
+//         deps.get(key).depend(); // <-- 依旧为存储target
+//         return obj[key]; // 返回原始数据
+//     },
+//     set(obj, key, newVal) {
+//         obj[key] = newVal; // 将原始数据设置为新值
+//         deps.get(key).notify(); // <-- 依旧为重新运行已存储的target
+//         return true;
+//     }
+// });
+// function watcher(myFun) {
+//     target = myFun
+//     target()
+//     target = null
+// }
+// watcher(() => {
+//     total = data.price * data.quantity;
+// });
+// console.log("total = " + total);
+// data.price = 20;
+// console.log("total = " + total);
+// data.quantity = 10;
+// console.log("total = " + total);
+
+// let data = { price: 5, quantity: 2 };
+//     let target = null;
+//     class Dep {
+//         constructor() {
+//             this.subscribers = [];
+//         }
+//         depend() {
+//             if (target && !this.subscribers.includes(target)) {
+//                 this.subscribers.push(target);
+//             }
+//         }
+//         notify() {
+//             this.subscribers.forEach(sub => sub());
+//         } 
+//     }
+//     // 前边的代码都没变
+//     let deps = new Map(); // 创建一个Map对象
+//     Object.keys(data).forEach(key => {
+//     // 为每个属性都设置一个依赖实例 并放入 deps 中
+//         deps.set(key, new Dep());
+//     });
+//     let data_without_proxy = data; // 保存源对象
+//     data = new Proxy(data_without_proxy, {
+//     // 重写数据以在中间创建一个代理
+//         get(obj, key) {
+//             deps.get(key).depend(); // <-- 依旧为存储target
+//             return obj[key]; // 返回原始数据
+//         },
+//         set(obj, key, newVal) {
+//             obj[key] = newVal; // 将原始数据设置为新值
+//             deps.get(key).notify(); // <-- 依旧为重新运行已存储的targets
+//             return true;
+//         }
+//     });
+//     // 用来监听具有响应性属性的代码
+//     function watcher(myFunc) {
+//         target = myFunc;
+//         target();
+//         target = null;
+//     }
+//     let total = 0
+//     watcher(() => {
+//         total = data.price * data.quantity;
+//     });
+//     console.log("total = " + total); 
+//     data.price = 20;
+//     console.log("total = " + total);
+//     data.quantity = 10;
+//     console.log("total = " + total);
+//     // 为dep添加一个新属性,存储依赖到Map中
+//     deps.set('discount', new Dep()) 
+//     // 添加不存在data中的属性
+//     data['discount'] = 5;
+//     let salePrice = 0;
+//     // 添加监听,会增加target 对其进行监听，其中包括我们新添加的属性
+//     watcher(() => {
+//         salePrice = data.price - data.discount;
+//     });
+//     console.log("salePrice = " + salePrice); 
+//     data.discount = 7.5 // 此时就会调用我们的监听函数，达到响应式的目的
+//     console.log("salePrice = " + salePrice);
+
+// var user = {
+//     id: 0,
+//     name: 'Brendan Eich',
+//     title: 'Mr.'
+// };
+
+// // 创建用户的greeting
+// function updateGreeting() {
+//     user.greeting = 'Hello, ' + user.title + ' ' + user.name + '!';
+// }
+// updateGreeting();
+
+// Object.observe(user, function(changes) {
+//     changes.forEach(function(change) {
+//         // 当name或title属性改变时, 更新greeting
+//         if (change.name === 'name' || change.name === 'title') {
+//             updateGreeting();
+//         }
+//     });
+// });
+
+// setTimeout(function(){console.log(1)},0);
+// new Promise(function(resolve,reject){
+//     // 同步操作
+//     console.log(2);
+//     // 传参给成功的函数 
+//     // resolve(3); // 2,7,6,4,5,1
+//     // 加入延时 2,7,6,1,5,5
+//     // setTimeout(()=>{
+//     //     resolve(4)
+//     // },0)
+//     // resolve(); // 2,7,6,NaN,5,1
+//     // reject("error") // 2,7,6,error,1
+//     // 没有上面resolve，reject的代码直接执行2，7，6，1,因为pending状态无法改变
+// }).then(function(value){console.log(value+1) // resolve时执行
+// }).then(function(){console.log(5)// resolve时执行
+// }).catch(function(error){
+//     console.log(error)
+// })
+// // process.nextTick方法指定的回调函数，总是在当前”执行栈”的尾部触发
+// process.nextTick(function(){console.log(6)});
+// // 同步
+// console.log(7);
+
+// function myPromise(constructor){
+//     let self=this;
+//     self.status="pending" //定义状态改变前的初始状态
+//     self.value=undefined;//定义状态为resolved的时候的状态
+//     self.reason=undefined;//定义状态为rejected的时候的状态
+//     function resolve(value){
+//         //两个==="pending"，保证了状态的改变是不可逆的
+//         if(self.status==="pending"){
+//             self.value=value;
+//             self.status="resolved";
+//         }
+//     }
+//     function reject(reason){
+//         //两个==="pending"，保证了状态的改变是不可逆的
+//         if(self.status==="pending"){
+//             self.reason=reason;
+//             self.status="rejected";
+//         }
+//     }
+//     //捕获构造异常
+//     try{
+//         constructor(resolve,reject);
+//     }catch(e){
+//         reject(e);
+//     }
+// }
+// // 在myPromise的原型上定义链式调用的then方法
+// myPromise.prototype.then=function(onFullfilled,onRejected){
+//     let self=this;
+//     switch(self.status){
+//         case "resolved":
+//             onFullfilled(self.value);
+//             break;
+//         case "rejected":
+//             onRejected(self.reason);
+//             break;
+//         default:       
+//     }
+// }
+// // 上述就是一个初始版本的myPromise，在myPromise里发生状态改变，然后在相应的then方法里面根据不同的状态可以执行不同的操作。
+
+// var p=new myPromise(function(resolve,reject){resolve(1)});
+// p.then(function(x){console.log(x)}) // 1
+
+// function sleep(ms){
+//     var start=Date.now(),expire=start+ms;
+//     while(Date.now()<expire);
+//     console.log('1111');
+//     return;
+// }
+// sleep(1000);
+
+// function sleep(ms){
+//     var temple=new Promise((resolve)=>{
+//         console.log(111);
+//         setTimeout(resolve,ms)
+//     });
+//     return temple
+// }
+// sleep(2000).then(function(){
+//     console.log(222)
+// })
+
+// function sleep(ms){
+//     return new Promise((resolve)=>setTimeout(resolve,ms));
+// }
+// // async函数必需返回一个promise
+// async function test(){
+//     // await 后面必需是个异步任务，等待异步任务返回promise结果
+//     var temple=await sleep(1000);
+//     console.log(1111)
+//     return temple
+// }
+// test();
+
+// function* sleep(ms){
+//     yield new Promise(function(resolve,reject){
+//         console.log(111);
+//         setTimeout(resolve,ms);
+//     })
+// }
+// sleep(2000).next().value.then(function(){console.log(2222)})
+
+RegExp.prototype.clone = function() {
+    var pattern = this.valueOf();
+    console.log(pattern);
+    var flags = '';
+    flags += pattern.global ? 'g' : '';
+    flags += pattern.ignoreCase ? 'i' : '';
+    flags += pattern.multiline ? 'm' : '';
+    return new RegExp(pattern.source, flags);
+};
+var reg=new RegExp('/111/');
+console.log(reg.clone());
