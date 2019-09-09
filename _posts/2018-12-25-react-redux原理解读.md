@@ -180,4 +180,4 @@ tags:
     export default thunk
   ```
 
-> 本文首次发布于 [SkioFox Blog](http://blog.skiofox.top), 作者 [SkioFox](https://github.com/LoverFancy/) ,转载请保留原文链接.
+> 本文首次发布于 [SkioFox Blog](http://blog.skiofox.top),转载请保留原文链接.

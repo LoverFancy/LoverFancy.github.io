@@ -379,4 +379,4 @@ fetch发送post请求的时候，总是发送2次，第一次状态码是204，�
 
 总结：axios既提供了并发的封装，也没有fetch的各种问题，而且体积也较小，当之无愧现在最应该选用的请求的方式。
 
-> 本文首次发布于 [SkioFox Blog](http://blog.skiofox.top), 作者 [SkioFox](https://github.com/LoverFancy/) ,转载请保留原文链接.a
+> 本文首次发布于 [SkioFox Blog](http://blog.skiofox.top),转载请保留原文链接.
