@@ -472,14 +472,78 @@
 // }
 // sleep(2000).next().value.then(function(){console.log(2222)})
 
-RegExp.prototype.clone = function() {
-    var pattern = this.valueOf();
-    console.log(pattern);
-    var flags = '';
-    flags += pattern.global ? 'g' : '';
-    flags += pattern.ignoreCase ? 'i' : '';
-    flags += pattern.multiline ? 'm' : '';
-    return new RegExp(pattern.source, flags);
-};
-var reg=new RegExp('/111/');
-console.log(reg.clone());
+// RegExp.prototype.clone = function() {
+//     var pattern = this.valueOf();
+//     console.log(pattern);
+//     var flags = '';
+//     flags += pattern.global ? 'g' : '';
+//     flags += pattern.ignoreCase ? 'i' : '';
+//     flags += pattern.multiline ? 'm' : '';
+//     return new RegExp(pattern.source, flags);
+// };
+// var reg=new RegExp('/111/');
+// console.log(reg.clone());
+
+// function unique(arr) {
+//     var obj = {};
+//     // filter() 方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素。
+//     return arr.filter(function(item, index, arr){
+//         // console.log(obj.hasOwnProperty(typeof item + item))
+//         // console.log(obj[typeof item + item] = true)
+//         return obj.hasOwnProperty(typeof item + item) ? false : (obj[typeof item + item] = true)
+//     })
+// }
+//     var arr = [1,1,'true','true',true,true,15,15,false,false, undefined,undefined, null,null, NaN, NaN,'NaN', 0, 0, 'a', 'a',{},{}];
+//         console.log(unique(arr))
+// //[1, "true", true, 15, false, undefined, null, NaN, "NaN", 0, "a", {…}]   //所有的都去重了
+// function unique(arr) {
+//     var array= arr;
+//     var len = array.length;
+
+//     array.sort(function(a,b){   //排序后更加方便去重
+//         return a - b;
+//     })
+
+//     function loop(index){
+//         if(index >= 1){
+//             if(array[index] === array[index-1]){
+//                 array.splice(index,1);
+//             }
+//             loop(index - 1);    //递归loop，然后数组去重
+//         }
+//     }
+//     loop(len-1);
+//     return array;
+// }
+// var arr = [1,1,'true','true',true,true,15,15,false,false, undefined,undefined, null,null, NaN, NaN,'NaN', 0, 0, 'a', 'a',{},{}];
+// console.log(unique(arr))
+// function arrayNonRepeatfy(arr) {
+//     // 空Map数据结构，遍历需要去重的数组，把数组的每一个元素作为key存到Map中。由于Map中不会出现相同的key值，所以最终得到的就是去重后的结果。
+//     let map = new Map();
+//     let array = new Array();  // 数组用于返回结果
+//     for (let i = 0; i < arr.length; i++) {
+//             if(map.has(arr[i])) {  // 如果有该key值
+//             map.set(arr[i], true); 
+//         } else { 
+//             map.set(arr[i], false);   // 如果没有该key值
+//             array.push(arr[i]);
+//         }
+//     } 
+//     return array ;
+// }
+// var arr = [1,1,'true','true',true,true,15,15,false,false, undefined,undefined, null,null, NaN, NaN,'NaN', 0, 0, 'a', 'a',{},{}];
+// console.log(arrayNonRepeatfy(arr))
+
+// function unique(arr){
+//     return arr.sort().reduce((prev,cur) => prev.includes(cur) ? prev : [...prev,cur],[]);
+// }
+// var arr = [1,1,'true','true',true,true,15,15,false,false, undefined,undefined, null,null, NaN, NaN,'NaN', 0, 0, 'a', 'a',{},{}];
+// console.log(unique(arr));
+
+function unique (arr) {
+    return Array.from(new Set(arr))
+    // 更简练的写法
+    // return [...new Set(arr)]
+}
+var arr = [1,1,'true','true',true,true,15,15,false,false, undefined,undefined, null,null, NaN, NaN,'NaN', 0, 0, 'a', 'a',{},{}];
+console.log(unique(arr))
