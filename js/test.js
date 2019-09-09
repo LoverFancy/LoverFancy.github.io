@@ -540,10 +540,63 @@
 // var arr = [1,1,'true','true',true,true,15,15,false,false, undefined,undefined, null,null, NaN, NaN,'NaN', 0, 0, 'a', 'a',{},{}];
 // console.log(unique(arr));
 
-function unique (arr) {
-    return Array.from(new Set(arr))
-    // 更简练的写法
-    // return [...new Set(arr)]
+// function unique (arr) {
+//     return Array.from(new Set(arr))
+//     // 更简练的写法
+//     // return [...new Set(arr)]
+// }
+// var arr = [1,1,'true','true',true,true,15,15,false,false, undefined,undefined, null,null, NaN, NaN,'NaN', 0, 0, 'a', 'a',{},{}];
+// console.log(unique(arr))
+
+// class PromiseM {
+//     constructor (process) {
+//         this.status = 'pending'
+//         this.msg = ''
+//         process(this.resolve.bind(this), this.reject.bind(this))
+//         console.log(this)
+//         return this
+//     }
+//     resolve (val) {
+//         this.status = 'fulfilled'
+//         this.msg = val
+//     }
+//     reject (err) {
+//         this.status = 'rejected'
+//         this.msg = err
+//     }
+//     then (fufilled, reject) {
+//         if(this.status === 'fulfilled') {
+//             fufilled(this.msg)
+//         }
+//         if(this.status === 'rejected') {
+//             reject(this.msg)
+//         }
+//     }
+// }
+
+// var mm=new PromiseM(function(resolve,reject){
+//         resolve('123');
+//     });
+//     mm.then(function(success){
+//         console.log(success);
+//     },function(){
+//         console.log('fail!');
+//     });
+
+// var arr = ['old', 1, true, ['old1', 'old2'], {old: 1,new:{new:12}}]
+// var new_arr = JSON.parse( JSON.stringify(arr) );
+// console.log(new_arr);
+var a = {value: 1}
+function getValue(name, age) {
+    console.log('arguments in fn = ', arguments)
+    console.log(name, age)
+    console.log(this.value)
 }
-var arr = [1,1,'true','true',true,true,15,15,false,false, undefined,undefined, null,null, NaN, NaN,'NaN', 0, 0, 'a', 'a',{},{}];
-console.log(unique(arr))
+getValue.call(a,'yandong1', 17)
+let bindFoo = getValue.bind(a, 'testBind', 45)
+console.log('bindFoo = ',bindFoo)
+bindFoo()
+getValue.apply(a,['yandong2', 18])
+var returnedFunc = getValue.bind(a,'yandong3', 19)
+console.log(returnedFunc)
+returnedFunc()
