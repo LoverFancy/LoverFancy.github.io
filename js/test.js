@@ -586,17 +586,63 @@
 // var arr = ['old', 1, true, ['old1', 'old2'], {old: 1,new:{new:12}}]
 // var new_arr = JSON.parse( JSON.stringify(arr) );
 // console.log(new_arr);
-var a = {value: 1}
-function getValue(name, age) {
-    console.log('arguments in fn = ', arguments)
-    console.log(name, age)
-    console.log(this.value)
+// var a = {value: 1}
+// function getValue(name, age) {
+//     console.log('arguments in fn = ', arguments)
+//     console.log(name, age)
+//     console.log(this.value)
+// }
+// getValue.call(a,'yandong1', 17)
+// let bindFoo = getValue.bind(a, 'testBind', 45)
+// console.log('bindFoo = ',bindFoo)
+// bindFoo()
+// getValue.apply(a,['yandong2', 18])
+// var returnedFunc = getValue.bind(a,'yandong3', 19)
+// console.log(returnedFunc)
+// returnedFunc()
+ var array1 = [5,7,1,9,4,6,2,12,3,8]
+// function flatten(arr) {
+//     return arr.toString().split(',').map(function(item){
+//         console.log(+item)
+//         return +item
+//     })
+// }
+// function flatten(arr) {
+//     return arr.reduce(function(prev, next){
+//         console.log(prev,next)
+//         return prev.concat(Array.isArray(next) ? flatten(next) : next)
+//     }, [])
+// }
+// console.log(array1.toString().split(','))
+// console.log(flatten(array1))
+
+// let names = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice'];
+
+// let nameNum = names.reduce((pre,cur)=>{
+//   if(cur in pre){
+//     pre[cur]++
+//   }else{
+//     pre[cur] = 1 
+//   }
+//   console.log(pre,pre[cur])
+//   return pre
+// },{})
+// console.log(nameNum); //{Alice: 2, Bob: 1, Tiff: 1, Bruce: 1}
+// console.log(array1)
+// console.log(...array1)
+function bubbleSort(array) {
+    const length = array.length;
+    for (let i = 0; i < length; i++) {
+        for (let j = 0; j < length - 1 - i; j++) {
+            console.log(array)
+            console.log(array[j],array[j+1])
+            if (array[j] > array[j + 1]) {      
+           let temp = array[j + 1];
+                array[j + 1] = array[j];
+                array[j] = temp;
+            }
+        }
+    }
+    return array;
 }
-getValue.call(a,'yandong1', 17)
-let bindFoo = getValue.bind(a, 'testBind', 45)
-console.log('bindFoo = ',bindFoo)
-bindFoo()
-getValue.apply(a,['yandong2', 18])
-var returnedFunc = getValue.bind(a,'yandong3', 19)
-console.log(returnedFunc)
-returnedFunc()
+console.log(bubbleSort(array1))
