@@ -646,27 +646,42 @@
 //     return array;
 // }
 // console.log(bubbleSort(array1))
-function insertionSort(array) {
-    for (let i = 1; i < array.length; i++) {
-        let key = array[i], left = 0, right = i - 1;
-        // console.log(left,right)
-        while (left <= right) {
-            // console.log(array)
-            console.log(left,right)
-            let middle = parseInt((left + right) / 2);
-            if (key < array[middle]) {
-                right = middle - 1;
-            } else {
-                left = middle + 1;
-            }
-        }
-        for (let j = i - 1; j >= left; j--) {
-            // console.log(left,right)
-            array[j + 1] = array[j];
-            // console.log(array)
-        }
-        array[left] = key;
+// function insertionSort(array) {
+//     for (let i = 1; i < array.length; i++) {
+//         let key = array[i], left = 0, right = i - 1;
+//         while (left <= right) {
+//             let middle = parseInt((left + right) / 2);
+//             if (key < array[middle]) {
+//                 right = middle - 1;
+//             } else {
+//                 left = middle + 1;
+//             }
+//         }
+//         for (let j = i - 1; j >= left; j--) {
+//             // console.log(left,right)
+//             array[j + 1] = array[j];
+//             // console.log(array)
+//         }
+//         array[left] = key;
+//     }
+//     return array;
+// }
+// console.log(insertionSort(array1))
+
+var getSingle = function (fn) { // 创建单例方法
+    var result // 通过闭包保存创建过的对象
+    console.log(this)
+    return function () {
+        console.log(this)
+        return result || (result = fn.apply(this, arguments))
     }
-    return array;
 }
-console.log(insertionSort(array1))
+
+var createPerson = getSingle(function (name) {
+    return {name: name}
+})
+
+var person1 = createPerson('张三')
+var person2 = createPerson('李四')
+
+// console.log(person1, person2);  // {name: '张三'} {name: '张三'}
