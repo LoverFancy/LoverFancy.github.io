@@ -630,19 +630,43 @@
 // console.log(nameNum); //{Alice: 2, Bob: 1, Tiff: 1, Bruce: 1}
 // console.log(array1)
 // console.log(...array1)
-function bubbleSort(array) {
-    const length = array.length;
-    for (let i = 0; i < length; i++) {
-        for (let j = 0; j < length - 1 - i; j++) {
-            console.log(array)
-            console.log(array[j],array[j+1])
-            if (array[j] > array[j + 1]) {      
-           let temp = array[j + 1];
-                array[j + 1] = array[j];
-                array[j] = temp;
+// function bubbleSort(array) {
+//     const length = array.length;
+//     for (let i = 0; i < length; i++) {
+//         for (let j = 0; j < length - 1 - i; j++) {
+//             console.log(array)
+//             console.log(array[j],array[j+1])
+//             if (array[j] > array[j + 1]) {      
+//            let temp = array[j + 1];
+//                 array[j + 1] = array[j];
+//                 array[j] = temp;
+//             }
+//         }
+//     }
+//     return array;
+// }
+// console.log(bubbleSort(array1))
+function insertionSort(array) {
+    for (let i = 1; i < array.length; i++) {
+        let key = array[i], left = 0, right = i - 1;
+        // console.log(left,right)
+        while (left <= right) {
+            // console.log(array)
+            console.log(left,right)
+            let middle = parseInt((left + right) / 2);
+            if (key < array[middle]) {
+                right = middle - 1;
+            } else {
+                left = middle + 1;
             }
         }
+        for (let j = i - 1; j >= left; j--) {
+            // console.log(left,right)
+            array[j + 1] = array[j];
+            // console.log(array)
+        }
+        array[left] = key;
     }
     return array;
 }
-console.log(bubbleSort(array1))
+console.log(insertionSort(array1))
