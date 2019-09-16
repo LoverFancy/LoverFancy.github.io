@@ -100,7 +100,7 @@ service-worker: true
 friends: [
     {
         title: "Blog",
-        href: "http://skiofox.top"
+        href: "http://blog.skiofox.top"
     },{
         title: "github",
         href: "https://github.com/LoverFancy/"
